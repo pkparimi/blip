@@ -722,7 +722,7 @@ export const clinics = (state = initialState.clinics, action) => {
     case types.FETCH_CLINIC_SUCCESS: {
       let clinic = _.get(action.payload, 'clinic', {});
       return update(state, {
-        [clinic.id]: { $set: { clinicians: {}, patients: {}, patientInvites: {}, ...clinic } },
+        [clinic.id]: { $set: { clinicians: {}, patients: {}, patientInvites: {}, migrations: [], ...clinic } },
       });
     }
     case types.FETCH_CLINICS_BY_IDS_SUCCESS: {
@@ -835,6 +835,12 @@ export const clinics = (state = initialState.clinics, action) => {
       let clinicId = _.get(action.payload, 'clinicId');
       return update(state, {
         [clinicId]: { canMigrate: { $set: false } },
+      });
+    }
+    case types.FETCH_CLINIC_MIGRATIONS_SUCCESS: {
+      const { clinicId, migrations } = action.payload;
+      return update(state, {
+        [clinicId]: { migrations: { $set: migrations } },
       });
     }
     case types.LOGOUT_REQUEST:

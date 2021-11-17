@@ -25,10 +25,14 @@ export const ClinicWorkspace = (props) => {
   const loggedInUserId = useSelector((state) => state.blip.loggedInUserId);
   const selectedClinicId = useSelector((state) => state.blip.selectedClinicId);
   const currentPatientInViewId = useSelector((state) => state.blip.currentPatientInViewId);
-  const { fetchingPatientInvites } = useSelector((state) => state.blip.working);
   const clinics = useSelector((state) => state.blip.clinics);
   const clinic = get(clinics, selectedClinicId);
   const patientInvites = values(clinic?.patientInvites);
+
+  const {
+    fetchingClinicMigrations,
+    fetchingPatientInvites,
+  } = useSelector((state) => state.blip.working);
 
   const tabIndices = {
     patients: 0,
@@ -72,6 +76,10 @@ export const ClinicWorkspace = (props) => {
         {
           workingState: fetchingPatientInvites,
           action: actions.async.fetchPatientInvites.bind(null, api, clinic.id),
+        },
+        {
+          workingState: fetchingClinicMigrations,
+          action: actions.async.getClinicMigrations.bind(null, api, clinic.id),
         },
       ], ({ workingState, action }) => {
         if (

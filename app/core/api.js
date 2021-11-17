@@ -993,6 +993,10 @@ api.clinics.triggerInitialClinicMigration = function(clinicId, cb) {
   return tidepool.triggerInitialClinicMigration(clinicId, cb);
 };
 
+api.clinics.getClinicMigrations = function(clinicId, cb) {
+  return tidepool.getClinicMigrations(clinicId, cb);
+};
+
 // ----- Errors -----
 
 api.errors = {};

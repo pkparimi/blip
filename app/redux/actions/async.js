@@ -2434,7 +2434,7 @@ export function getClinicsForClinician(api, clinicianId, options = {}, cb = _.no
  * @param {Object} api - an instance of the API wrapper
  * @param {String} shareCode - Share code of the clinic
  */
- export function fetchClinicByShareCode(api, shareCode) {
+export function fetchClinicByShareCode(api, shareCode) {
   return (dispatch) => {
     dispatch(sync.fetchClinicRequest());
 
@@ -2456,7 +2456,7 @@ export function getClinicsForClinician(api, clinicianId, options = {}, cb = _.no
  * @param {Object} api - an instance of the API wrapper
  * @param {String} clinicId - Id of the clinic
  */
- export function triggerInitialClinicMigration(api, clinicId) {
+export function triggerInitialClinicMigration(api, clinicId) {
   return (dispatch) => {
     dispatch(sync.triggerInitialClinicMigrationRequest());
 
@@ -2467,6 +2467,28 @@ export function getClinicsForClinician(api, clinicianId, options = {}, cb = _.no
         ));
       } else {
         dispatch(sync.triggerInitialClinicMigrationSuccess(clinicId));
+      }
+    });
+  };
+}
+
+/**
+ * Fetch a list of all of a clinics migrations
+ *
+ * @param {Object} api - an instance of the API wrapper
+ * @param {String} clinicId - Id of the clinic
+ */
+export function getClinicMigrations(api, clinicId) {
+  return (dispatch) => {
+    dispatch(sync.getClinicMigrationsRequest());
+
+    api.clinics.getClinicMigrations(clinicId, (err, migrations) => {
+      if (err) {
+        dispatch(sync.getClinicMigrationsFailure(
+          createActionError(ErrorMessages.ERR_FETCHING_CLINIC_MIGRATIONS, err), err
+        ));
+      } else {
+        dispatch(sync.getClinicMigrationsSuccess(clinicId, migrations));
       }
     });
   };

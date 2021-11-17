@@ -1936,3 +1936,29 @@ export function triggerInitialClinicMigrationFailure(error, apiError) {
     },
   };
 }
+
+export function getClinicMigrationsRequest() {
+  return {
+    type: ActionTypes.FETCH_CLINIC_MIGRATIONS_REQUEST,
+  };
+}
+
+export function getClinicMigrationsSuccess(clinicId, migrations) {
+  return {
+    type: ActionTypes.FETCH_CLINIC_MIGRATIONS_SUCCESS,
+    payload: {
+      clinicId: clinicId,
+      migrations: migrations,
+    },
+  };
+}
+
+export function getClinicMigrationsFailure(error, apiError) {
+  return {
+    type: ActionTypes.FETCH_CLINIC_MIGRATIONS_FAILURE,
+    error: error,
+    meta: {
+      apiError: apiError || null,
+    },
+  };
+}
