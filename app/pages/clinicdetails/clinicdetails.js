@@ -461,7 +461,7 @@ export const ClinicDetails = (props) => {
                       </Body1>
 
                       <Checkbox
-                        {...getCommonFormikFieldProps('attestationConfirmed', formikContext, 'checked')}
+                        {...getCommonFormikFieldProps('attestationSubmitted', formikContext, 'checked')}
                         label={t('I have read and agree on behalf of the Healthcare Practice or Facility named above to the Tidepool Terms of Use and Privacy Policy. I represent that I have the authority to agree to the Tidepool Terms of Use and Privacy Policy on behalf of that Healthcare Practice or Facility, and by checking the box, that Healthcare Practice or Facility is bound to the Tidepool Terms of Use and Privacy Policy (all as more fully described in the Terms of Use and Privacy Policy).')}
                         themeProps={{ lineHeight: 1.4 }}
                       />

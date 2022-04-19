@@ -72,7 +72,7 @@ describe('clinicUtils', function() {
         clinicType: '',
         clinicSize: '',
         website: '',
-        attestationConfirmed: false,
+        attestationSubmitted: false,
       });
     });
 
@@ -93,7 +93,7 @@ describe('clinicUtils', function() {
         clinicType: 'provider_practice',
         clinicSize: '0-249',
         website: 'http://mysite.com',
-        attestationConfirmed: true,
+        attestationSubmitted: true,
       };
 
       expect(clinicUtils.clinicValuesFromClinic(clinic)).to.eql(clinic);
@@ -115,7 +115,7 @@ describe('clinicUtils', function() {
         'clinicType',
         'clinicSize',
         'website',
-        'attestationConfirmed',
+        'attestationSubmitted',
       ]);
 
       expect(clinicUtils.clinicSchema.fields.phoneNumbers.innerType._nodes).to.be.an('array').and.have.members([
